@@ -1,10 +1,6 @@
 import mongoose from 'mongoose';
 
 let uri = process.env.MONGODB_URI;
-let dbName = process.env.MONGODB_DB;
-
-let cachedClient = null;
-let cachedDb = null;
 
 if (!uri) {
   throw new Error(
@@ -12,26 +8,27 @@ if (!uri) {
   );
 }
 
-if (!dbName) {
-  throw new Error(
-    'Please define the MONGODB_DB environment variable inside .env.local'
-  );
+let cached = global.mongoose;
+
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null};
 }
 
 export const connectToDatabase = async function () {
-  if (cachedClient && cachedDb) {
-    return { client: cachedClient, db: cachedDb };
+  if (cached.conn) {
+    return cached.conn;
   }
 
-  const client = await mongoose.connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  });
+  if (!cached.promise) {
+    cached.promise = mongoose.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    })
+      .then(mongoose => {
+        return mongoose;
+      });
+  }
 
-  const db = await client.db(dbName);
-
-  cachedClient = client;
-  cachedDb = db;
-
-  return { client, db };
+  cached.conn = await cached.promise;
+  return cached.conn;
 };

@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LoginNav from './LoginNav';
+import Nav from './Nav';
 import Header from './Header';
 import styles from '../styles/Layout.module.css';
 
 const Layout = ({children}) => {
   return (
     <>
-      <LoginNav />
+      <Nav />
       <div className={styles.container}>
         <main className={styles.main}>
           <Header />
