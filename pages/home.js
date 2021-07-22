@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { useUser } from '../lib/hooks';
 import PropTypes from 'prop-types';
 
 
 const Home = ({ data }) => {
+  const router = useRouter();
+  const [user, { mutate }] = useUser();
+
+  useEffect(() => {
+    if (!user) {
+      router.push('/login');
+    }
+  }, [user]);
+
   return (
     <div className="card-container">
       {data.map((value, index) => {
