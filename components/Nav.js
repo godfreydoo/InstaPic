@@ -6,6 +6,7 @@ import navStyles from '../styles/Nav.module.css';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import { useUser } from '../lib/hooks';
+import cookie from 'js-cookie';
 
 
 const LoginNav = () => {
@@ -16,8 +17,10 @@ const LoginNav = () => {
     try {
       let res = await fetch('/api/logout');
       mutate({ user: null });
+      cookie.remove('user');
       if (res.status === 204) {
         router.push('/login');
+        window.reload;
       }
     } catch (err) {
       // handle error
@@ -44,7 +47,7 @@ const LoginNav = () => {
             </li>
           </ul>
         </nav>
-        {showModal && <ComposeModal body={<Post/>} handleShowModal={handleShowModal}/>}
+        {showModal && <ComposeModal body={<Post setShowModal={setShowModal}/>} handleShowModal={handleShowModal}/>}
       </>
     );
   } else {

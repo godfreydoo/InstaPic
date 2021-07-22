@@ -4,7 +4,7 @@ import axios from 'axios';
 
 
 
-export const UploadPhoto = () => {
+export const UploadPhoto = ({ setPostDetails }) => {
   const [transformedPhotoUrl, setTransformedPhotoUrl] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -23,6 +23,7 @@ export const UploadPhoto = () => {
       };
       const { data } = await axios(config);
       setTransformedPhotoUrl(data.url);
+      setPostDetails(prevDetails => { return {...prevDetails, url: data.url }; });
     } catch (err) {
       setErrorMsg('Photo cannot be uploaded. Please try again later.');
     } finally {
@@ -45,7 +46,7 @@ export const UploadPhoto = () => {
             name="file"
             data-testid="imageUpload"
             accept="image/*"
-            disableUnderline={true}
+            disableunderline="true"
             onChange={getHostedPhotoUrl}/>
         </label>
         {errorMsg && <p data-testid="errorMsg" className="error">{errorMsg}</p>}

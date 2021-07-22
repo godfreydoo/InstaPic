@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { TextField, Button } from '@material-ui/core';
 import { useRouter } from 'next/router';
 import { useUser } from '../lib/hooks';
+import { useCookies } from 'react-cookie';
 import axios from 'axios';
 
 
@@ -11,8 +12,9 @@ const initialState = {
 };
 
 const LoginForm = () => {
-  const [user, { mutate }] = useUser();
   const router = useRouter();
+  const [user, { mutate }] = useUser();
+  const [cookie, setCookie] = useCookies(['user']);
   const [errorMsg, setErrorMsg] = useState('');
   const [existingUser, setExistingUser] = useState({
     username: '',
@@ -35,6 +37,14 @@ const LoginForm = () => {
     }
   };
 
+  const setCookieInBrowser = (user) => {
+    setCookie('user', user, {
+      path: '/',
+      maxAge: 60 * 60 * 3,
+      sameSite: true,
+    });
+  };
+
   const logInAccount = async () => {
     const config = {
       url: '/api/login',
@@ -46,6 +56,7 @@ const LoginForm = () => {
     try {
       const { data } = await axios(config);
       mutate(data);
+      setCookieInBrowser(data.user);
       if (data.user) {
         router.push('/home');
       }
