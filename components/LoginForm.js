@@ -72,7 +72,7 @@ const LoginForm = () => {
     if (user) {
       router.push('/home');
     }
-  }, [user]);
+  }, [user, router]);
 
   return (
     <>

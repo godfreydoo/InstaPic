@@ -57,7 +57,7 @@ const RegisterForm = () => {
     if (user) {
       router.push('/home');
     }
-  }, [newUser, user]);
+  }, [newUser, user, router]);
 
   const createAccount = async () => {
     const config = {
