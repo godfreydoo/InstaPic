@@ -3,18 +3,17 @@ import passport from '../lib/passport';
 import { session } from '../lib/session';
 
 const auth = nextConnect()
-  .use(
-    session({
-      name: 'sess',
-      secret: process.env.TOKEN_SECRET,
-      cookie: {
-        maxAge: 60 * 60 * 3,
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        path: '/',
-        sameSite: 'lax',
-      }
-    })
+  .use(session({
+    name: 'sess',
+    secret: process.env.TOKEN_SECRET,
+    cookie: {
+      maxAge: 60 * 60 * 3,
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      path: '/',
+      sameSite: 'lax',
+    }
+  })
   )
   .use(passport.initialize())
   .use(passport.session());

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, Button } from '@material-ui/core';
 import { useRouter } from 'next/router';
+import { useUser } from '../lib/hooks';
 import axios from 'axios';
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
 };
 
 const RegisterForm = () => {
+  const [user, { mutate }] = useUser();
   const router = useRouter();
   const [errorMsg, setErrorMsg] = useState([]);
   const [newUser, setNewUser] = useState({
@@ -52,7 +54,10 @@ const RegisterForm = () => {
 
   useEffect(() => {
     setErrorMsg([]);
-  }, [newUser]);
+    if (user) {
+      router.push('/home');
+    }
+  }, [newUser, user]);
 
   const createAccount = async () => {
     const config = {

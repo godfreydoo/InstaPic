@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, Button } from '@material-ui/core';
 import { useRouter } from 'next/router';
+import { useUser } from '../lib/hooks';
 import axios from 'axios';
 
 
@@ -10,6 +11,7 @@ const initialState = {
 };
 
 const LoginForm = () => {
+  const [user, { mutate }] = useUser();
   const router = useRouter();
   const [errorMsg, setErrorMsg] = useState('');
   const [existingUser, setExistingUser] = useState({
@@ -43,6 +45,7 @@ const LoginForm = () => {
 
     try {
       const { data } = await axios(config);
+      mutate(data);
       if (data.user) {
         router.push('/home');
       }
@@ -52,6 +55,13 @@ const LoginForm = () => {
       setIsProcessingLogin(false);
     }
   };
+
+  useEffect(() => {
+    // redirect to home if user is already authenticated
+    if (user) {
+      router.push('/home');
+    }
+  }, [user]);
 
   return (
     <>

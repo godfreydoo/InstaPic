@@ -5,13 +5,17 @@ import Post from './Post';
 import navStyles from '../styles/Nav.module.css';
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import { useUser } from '../lib/hooks';
+
 
 const LoginNav = () => {
+  const [user, { mutate }] = useUser();
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
   const handleLogout = async () => {
     try {
       let res = await fetch('/api/logout');
+      mutate({ user: null });
       if (res.status === 204) {
         router.push('/login');
       }
@@ -24,30 +28,41 @@ const LoginNav = () => {
     setShowModal(prev => !prev);
   };
 
-  return (
-    <>
-      <nav className={navStyles.nav}>
-        <ul>
-          <li>
-            <Link href="/login">Log In</Link>
-          </li>
-          <li>
-            <Link href="/register">Register</Link>
-          </li>
-          <li>
-            <a role="button" onClick={handleLogout}>Logout</a>
-          </li>
-          <li>
-            <Link href="/home">Home</Link>
-          </li>
-          <li>
-            <a role="button" onClick={handleShowModal}>Post</a>
-          </li>
-        </ul>
-      </nav>
-      {showModal && <ComposeModal body={<Post/>} handleShowModal={handleShowModal}/>}
-    </>
-  );
+  if (user) {
+    return (
+      <>
+        <nav className={navStyles.nav}>
+          <ul>
+            <li>
+              <a role="button" onClick={handleLogout}>Logout</a>
+            </li>
+            <li>
+              <Link href="/home">Home</Link>
+            </li>
+            <li>
+              <a role="button" onClick={handleShowModal}>Post</a>
+            </li>
+          </ul>
+        </nav>
+        {showModal && <ComposeModal body={<Post/>} handleShowModal={handleShowModal}/>}
+      </>
+    );
+  } else {
+    return (
+      <>
+        <nav className={navStyles.nav}>
+          <ul>
+            <li>
+              <Link href="/login">Log In</Link>
+            </li>
+            <li>
+              <Link href="/register">Register</Link>
+            </li>
+          </ul>
+        </nav>
+      </>
+    );
+  }
 };
 
 export default LoginNav;

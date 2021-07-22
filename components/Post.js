@@ -21,6 +21,11 @@ const cardStyles = makeStyles((theme) => ({
 
 const Post = function () {
   const classes = cardStyles();
+  const [postDetails, setPostDetails] = useState({
+    username: '',
+    description: '',
+    url: '',
+  });
 
   return (
     <div>
