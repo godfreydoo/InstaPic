@@ -19,3 +19,14 @@ a {
   font-size: 14px;
   color: red;
 }
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.image-container, .upload-file-button {
+  display: flex;
+  justify-content: center;
+}
+
