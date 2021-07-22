@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { UploadPhoto } from './UploadPhoto';
-import { TextField, Button } from '@material-ui/core';
-import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-import { makeStyles } from '@material-ui/core/styles';
+import { TextField, Button, TextareaAutosize, makeStyles, Grid, Input } from '@material-ui/core';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import Grid from '@material-ui/core/Grid';
-import Input from '@material-ui/core/Input';
 import cookie from 'js-cookie';
 
 

@@ -23,7 +23,7 @@ const LoginNav = () => {
         window.reload;
       }
     } catch (err) {
-      // handle error
+      router.push('/login');
     }
   };
 

@@ -14,14 +14,14 @@ const Home = ({ data }) => {
     if (!user) {
       router.push('/login');
     }
-  }, [user]);
+  }, [user, router]);
 
   if (data) {
     return (
       <div className="card-container">
         {data.map((value, index) => {
           return (
-            <div className="card" key="index">
+            <div className="card" key={value._id}>
               <Image src={value.url} width="450" height="450" alt={value.description}/>
               <article className="content" >
                 <div className="user">{value.username}</div>
@@ -38,7 +38,7 @@ const Home = ({ data }) => {
 
 };
 
-const getStaticProps = async (context) => {
+export const getStaticProps = async (context) => {
   const res = await fetch('http://localhost:3000/api/get');
   const data = await res.json();
 
