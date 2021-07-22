@@ -104,9 +104,7 @@ const Post = function ({ setShowModal }) {
                 disabled={isSubmitting}>
                 {isSubmitting ? 'Submitting...' : 'Submit now'}
               </Button>
-              <section>
-                {successMsg && <p data-testid="successMsg" className="success">{successMsg}</p>}
-              </section>
+              {successMsg && <p data-testid="successMsg" className="success">{successMsg}</p>}
             </Grid>
           </section>
         </div>
