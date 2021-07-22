@@ -1,10 +1,13 @@
 import React from 'react';
+import LoginLayout from '../components/LoginLayout';
+import Nav from '../components/Nav';
+import LoginForm from '../components/LoginForm';
 
 const Login = () => {
   return (
-    <div>
-      Log in here
-    </div>
+    <LoginLayout>
+      <LoginForm />
+    </LoginLayout>
   );
 };
 
