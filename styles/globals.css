@@ -19,3 +19,24 @@ a {
   font-size: 14px;
   color: red;
 }
+
+.success {
+  font-size: 14px;
+  font-weight: bold;
+  color: green;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.image-container, .upload-file-button {
+  display: flex;
+  justify-content: center;
+}
+
+.post-container > section {
+  padding: 15px;
+  margin: 0 auto;
+}

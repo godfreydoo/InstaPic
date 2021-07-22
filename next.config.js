@@ -1,6 +1,9 @@
 module.exports = {
-  reactStrictMode: true,
+  images: {
+    domains: ['res.cloudinary.com']
+  },
   env: {
-    mongodburl: process.env.MONGODB_URI
+    cloudinaryPreset: process.env.CLOUDINARY_PRESET,
+    cloudinaryUrl: process.env.CLOUDINARY_URL
   }
 };
