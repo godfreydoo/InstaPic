@@ -2,7 +2,8 @@ module.exports = {
   extends: [
     'plugin:react-hooks/recommended',
     'plugin:react/recommended',
-    'plugin:@next/next/recommended'
+    'plugin:@next/next/recommended',
+    'next'
   ],
   env: {
     'es6': true
@@ -10,11 +11,7 @@ module.exports = {
   parserOptions: {
     sourceType: 'module',
     ecmaVersion: 2018,
-    ecmaFeatures: {
-      'jsx': true
-    }
   },
-  ignorePatterns: ['bundle.js'],
   rules: {
     'no-mixed-spaces-and-tabs': 2,
     'indent': [2, 2],

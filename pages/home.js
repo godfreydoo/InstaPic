@@ -16,26 +16,40 @@ const Home = ({ data }) => {
     }
   }, [user]);
 
-  return (
-    <div className="card-container">
-      {data.map((value, index) => {
-        return (
-          <div className="card" key="index">
-            <Image src={value.url} width="450" height="450" alt={value.description}/>
-            <article className="content" >
-              <div className="user">{value.username}</div>
-              <p>{value.description}</p>
-            </article>
-          </div>
-        );
-      })}
-    </div>
-  );
+  if (data) {
+    return (
+      <div className="card-container">
+        {data.map((value, index) => {
+          return (
+            <div className="card" key="index">
+              <Image src={value.url} width="450" height="450" alt={value.description}/>
+              <article className="content" >
+                <div className="user">{value.username}</div>
+                <p>{value.description}</p>
+              </article>
+            </div>
+          );
+        })}
+      </div>
+    );
+  } else {
+    return null;
+  }
+
 };
 
-export const getStaticProps = async () => {
+const getStaticProps = async (context) => {
   const res = await fetch('http://localhost:3000/api/get');
   const data = await res.json();
+
+  if (!data) {
+    return {
+      redirect: {
+        destination: '/home',
+        permanent: false,
+      }
+    };
+  }
 
   return {
     props: { data }
