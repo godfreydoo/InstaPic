@@ -19,14 +19,18 @@ const LoginForm = () => {
   const [isProcessingLogin, setIsProcessingLogin] = useState(false);
 
   const handleFormChange = (e) => {
+    setIsProcessingLogin(false);
     setExistingUser(prevFormDetails => { return {...prevFormDetails, [e.target.name]: e.target.value }; });
   };
 
   const validateExistingUser = () => {
     setIsProcessingLogin(true);
-    // if username or password is blank
-
-    logInAccount();
+    if (!existingUser.username || !existingUser.password) {
+      setErrorMsg('Username and password must not be empty.');
+      setIsProcessingLogin(false);
+    } else {
+      logInAccount();
+    }
   };
 
   const logInAccount = async () => {
@@ -38,10 +42,12 @@ const LoginForm = () => {
     };
 
     try {
-      const res = await axios(config);
-      router.push('/home');
+      const { data } = await axios(config);
+      if (data.user) {
+        router.push('/home');
+      }
     } catch (err) {
-      // handle error
+      setErrorMsg('Incorrect username or password');
     } finally {
       setIsProcessingLogin(false);
     }
@@ -49,9 +55,11 @@ const LoginForm = () => {
 
   return (
     <>
+      {errorMsg && <p data-testid="errorMsg" className="error">{errorMsg}</p>}
       <form noValidate>
         <section>
           <TextField
+            inputProps={{ 'data-testid': 'username' }}
             label="Username"
             type="text"
             name="username"
@@ -66,6 +74,7 @@ const LoginForm = () => {
 
         <section>
           <TextField
+            inputProps={{ 'data-testid': 'password' }}
             label="Password"
             type="password"
             name="password"

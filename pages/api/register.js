@@ -18,8 +18,8 @@ handler
     }
     const user = { username, password };
 
-    createUser(req, user);
-    res.status(201).json({ user: req.user });
+    const userData = await createUser(req, user);
+    res.status(201).json({username: userData.username});
   });
 
 export default handler;

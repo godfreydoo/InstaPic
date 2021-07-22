@@ -14,3 +14,8 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.error {
+  font-size: 14px;
+  color: red;
+}
