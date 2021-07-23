@@ -69,7 +69,7 @@ const Home = ({ data, count }) => {
 
 };
 
-export const getStaticProps = async (context) => {
+export const getServerSideProps = async (context) => {
   const resGet = await fetch('http://localhost:3000/api/get');
   const resCount = await fetch('http://localhost:3000/api/count');
 
