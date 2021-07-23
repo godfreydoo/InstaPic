@@ -5,12 +5,13 @@ const handler = nextConnect();
 
 handler
   .get(async (req, res) => {
+    const { username, page, count } = req.query;
 
     let response;
-    if (req.query.username !== 'undefined') {
-      response = await getPosts(req.query.username);
+    if (username === 'undefined') {
+      response = await getPosts(undefined, page, count);
     } else {
-      response = await getPosts();
+      response = await getPosts(username, page, count);
     }
 
     res.setHeader(
