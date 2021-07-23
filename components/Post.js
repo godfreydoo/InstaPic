@@ -84,7 +84,7 @@ const Post = function ({ setShowModal }) {
               variant="outlined"
               multiline={true}
               rows={2}
-              maxLength={500}
+              maxLength={100}
               fullWidth={true}
               onChange={handleOnChange}/>
           </section>

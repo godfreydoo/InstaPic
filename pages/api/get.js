@@ -5,8 +5,19 @@ const handler = nextConnect();
 
 handler
   .get(async (req, res) => {
-    const postResponse = await getPosts();
-    res.status(201).json(postResponse);
+
+    let response;
+    if (req.query.username !== 'undefined') {
+      response = await getPosts(req.query.username);
+    } else {
+      response = await getPosts();
+    }
+
+    res.setHeader(
+      'Cache-Control',
+      's-maxage=86400'
+    );
+    res.status(201).json(response);
   });
 
 export default handler;

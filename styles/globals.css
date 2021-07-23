@@ -64,11 +64,22 @@ a {
   width: 100%;
 }
 
+p {
+  font-size: 15px;
+}
+
 .user:hover,
 .user:focus,
-.user:active {
+.user:active, u{
   color: #0070f3;
   border-color: #0070f3;
   cursor: pointer;
   font-weight: bold;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  font-style: italic;
+  font-size: 14px;
 }
