@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <div>
       <h1 className="title">
-        <span>Hello, welcome to InstaPic 👋</span>
+        <span>Welcome to InstaPic 👋</span>
       </h1>
     </div>
   );

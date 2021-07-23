@@ -9,13 +9,12 @@ const Layout = ({children}) => {
     <>
       <Nav />
       <div className={styles.container}>
+        <Header />
         <main className={styles.grid}>
-          <Header />
           {children}
         </main>
       </div>
     </>
-
   );
 };
 

@@ -17,3 +17,8 @@ const PostSchema = new mongoose.Schema ({
 
 export const User = mongoose.models.User || mongoose.model('User', UserSchema);
 export const Post = mongoose.models.Post || mongoose.model('Post', PostSchema);
+
+/*
+*  Posts: indexed createdAt by desc, and created composite index for username + _id for filtering posts by user
+*  Users: indexed by username
+*/

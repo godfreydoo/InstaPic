@@ -68,11 +68,10 @@ const LoginForm = () => {
   };
 
   useEffect(() => {
-    // redirect to home if user is already authenticated
     if (user) {
       router.push('/home');
     }
-  }, [user]);
+  }, [user, router]);
 
   return (
     <>
