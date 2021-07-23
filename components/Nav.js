@@ -20,7 +20,6 @@ const LoginNav = () => {
       cookie.remove('user');
       if (res.status === 204) {
         router.push('/login');
-        window.reload;
       }
     } catch (err) {
       router.push('/login');

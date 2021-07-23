@@ -3,19 +3,19 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Post from '../components/Post';
 import UploadPhoto from '../components/UploadPhoto';
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-describe('Submitting posts', () => {
+describe('Photo upload process', () => {
 
-  test('Form will not be submitted withou missing fields', async () => {
-    const handleOnChange = jest.fn();
-    render(<Post setShowModal={handleOnChange} />);
+  test('Photo can be uploaded for further processing', async () => {
+    render(<UploadPhoto />);
 
-    await userEvent.click(screen.getByRole('button', {name: /submit now/i}));
-    expect(screen.getByText(/Description and photo are required. Please try again./i)).toBeInTheDocument;
+    const file = new File(['I am a photo'], 'photo.png');
+    await userEvent.click(screen.getByTestId('imageUpload'), { target: { file: [file]}});
+    expect(screen.getByTestId('imageUpload').file.length).toBeGreaterThan(0);
   });
+
 });
