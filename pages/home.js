@@ -4,6 +4,7 @@ import axios from 'axios';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useUser } from '../lib/hooks';
+import { getPosts, getTotalPosts } from '../lib/db';
 import PropTypes from 'prop-types';
 import ta from 'time-ago';
 
@@ -70,19 +71,11 @@ const Home = ({ data, count }) => {
 };
 
 export const getServerSideProps = async (context) => {
-  if (process.env.NODE_ENV === 'development') {
-    const resGet = await fetch('http://localhost:3000/api/get');
-    const resCount = await fetch('http://localhost:3000/api/count');
-  }
+  const resPosts = await getPosts(undefined, 1, 8);
+  const resCount = await getTotalPosts();
 
-  if (process.env.NODE_ENV === 'production') {
-    const resGet = await fetch('https://instapic-gd.vercel.app/api/get');
-    const resCount = await fetch('https://instapic-gd.vercel.app/api/count');
-  }
-
-
-  const data = await resGet.json();
-  const count = await resCount.json();
+  const data = JSON.parse(JSON.stringify(resPosts));
+  const count = JSON.parse(JSON.stringify(resCount));
 
   if (!data) {
     return {
