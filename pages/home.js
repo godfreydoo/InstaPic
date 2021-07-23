@@ -24,8 +24,17 @@ const Home = ({ data, count }) => {
 
   const filterPostsByUserOrPage = async (username = undefined, page) => {
     // per page count = 8 by default
+
+    var url;
+
+    if (process.env.NODE !== 'production') {
+      url = 'http://localhost:3000/api/';
+    } else if (process.env.NODE === 'production') {
+      url = 'https://instapic-gd.vercel.app/api/';
+    }
+
     try {
-      const res = await fetch(`http://localhost:3000/api/get?username=${username}&page=${page}&count=8`);
+      const res = await fetch(`${url}get?username=${username}&page=${page}&count=8`);
       const data = await res.json();
       console.log(data);
       setDisplayData(data);
