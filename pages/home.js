@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Pagination from '../components/Pagination';
+import PaginationOutlined from '../components/Pagination';
 import axios from 'axios';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -43,7 +43,7 @@ const Home = ({ data, count }) => {
               {userView && <u onClick={() => filterPostsByUserOrPage()}>View all posts</u>}
             </div>
             <div className="pagination">
-              <Pagination filterPostsByUserOrPage={filterPostsByUserOrPage} count={count}/>
+              <PaginationOutlined filterPostsByUserOrPage={filterPostsByUserOrPage} count={count}/>
             </div>
           </div>
           <div className="card-container">

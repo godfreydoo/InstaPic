@@ -76,6 +76,7 @@ const Post = function ({ setShowModal }) {
           </section>
           <section>
             <TextField
+              inputProps={{ 'data-testid': 'description' }}
               style={{padding: '10px'}}
               id="outlined-helperText"
               name="description"
