@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { useUser } from '../lib/hooks';
 import { getPosts, getTotalPosts } from '../lib/db';
 import PropTypes from 'prop-types';
+import cookie from 'js-cookie';
 import ta from 'time-ago';
 
 
@@ -16,7 +17,7 @@ const Home = ({ data, count }) => {
 
 
   useEffect(() => {
-    if (!user) {
+    if (!user && !(cookie.get('user'))) {
       router.push('/login');
     }
   }, [user, router]);
@@ -49,7 +50,9 @@ const Home = ({ data, count }) => {
             {displayData.map((value, index) => {
               return (
                 <div className="card" key={value._id}>
-                  <Image src={value.url} width="450" height="450" className="card-image" alt={value.description}/>
+                  <div className="card-image-parent">
+                    <Image src={value.url} width={450} height={450} className="card-image" alt={value.description}/>
+                  </div>
                   <article className="content" >
                     <div className="user" onClick={() => filterPostsByUserOrPage(value.username)}>{value.username}</div>
                     <div>{ta.ago(value.dateCreated)}</div>
@@ -79,7 +82,7 @@ export const getServerSideProps = async (context) => {
     return {
       redirect: {
         destination: '/home',
-        permanent: false,
+        permanent: true,
       }
     };
   }
