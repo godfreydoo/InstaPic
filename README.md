@@ -49,7 +49,7 @@ npm install
 ```bash
 npm run dev
 ```
-4. See [Environment Variables]((#environment-variables) below.
+4. See [Environment Variables](#environment-variables) below.
 5. Navigate to http://localhost:3000
 6. Run below for tests:
 ```bash
@@ -106,7 +106,7 @@ Integer
 
 ## Environment Variables
 ------------
-Use the `env.local.example` as reference for below: 
+Use the `env.local.example` as reference: 
 1. Create a cluster with [Mongo Atlas](https://www.mongodb.com/cloud/atlas) and generate the connection string with your username, password, and database name. Insert the connection string to `MONGODB_URI`. Insert the database name to `MONGODB_DB`.
 2. Generate `TOKEN_SECRET` as a secret key for session creation. Open terminal and run command to generate a random hex string.
 ```bash
