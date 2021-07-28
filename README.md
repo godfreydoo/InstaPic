@@ -10,7 +10,7 @@ https://instapic-gd.vercel.app/login
 
 [![Build Status](https://circleci.com/gh/godfreydoo/instapic.svg?&style=shield)](https://github.com/godfreydoo/instapic)
 
-Current functionality includes account registration, uploading a post with an image and description, and view posts with pagination and user filtering. Application is built with [Next.js](https://nextjs.org/), powered by [Vercel](https://vercel.com/)'s serverless functions, and CircleCI for CI/CD. Blazing fast load speeds, server-side rendering, and optimized ⚡.
+Current functionality includes account registration, uploading a post with an image and description, and view posts with pagination and user filtering. Application is built with [Next.js](https://nextjs.org/), powered by [Vercel](https://vercel.com/)'s serverless functions, and CircleCI for CI/CD. Application has blazing fast load speeds, server-side rendering, and is optimized with caching and indexed database queries ⚡.
 
 ![](lighthouse.png)
 
