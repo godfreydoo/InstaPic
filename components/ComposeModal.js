@@ -4,13 +4,6 @@ import { makeStyles, Button, Fade, Modal, Backdrop } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 
 const useStyles = makeStyles((theme) => ({
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    width: '45%',
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  },
   modal: {
     display: 'flex',
     alignItems: 'center',
@@ -30,7 +23,7 @@ const ComposeModal = (props) => {
         timeout: 500,
       }}>
       <Fade in={true}>
-        <div className={classes.paper}>
+        <div className="modal">
           <div className="modal-header">
             <h1>Submit a post</h1>
             <Button endIcon={<CloseIcon />} role="button" onClick={props.handleShowModal}></Button>

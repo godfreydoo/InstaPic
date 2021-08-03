@@ -50,7 +50,7 @@ const Home = ({ data, count }) => {
             {displayData.map((value, index) => {
               return (
                 <div className="card" key={value._id}>
-                  <div className="card-image-parent">
+                  <div>
                     <Image src={value.url} width={450} height={450} className="card-image" alt={value.description}/>
                   </div>
                   <article className="content" >
