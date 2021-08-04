@@ -34,7 +34,7 @@ export const UploadPhoto = ({ setPostDetails }) => {
   if (isLoading || transformedPhotoUrl) {
     return (
       <div className="image-container">
-        {transformedPhotoUrl && <Image src={transformedPhotoUrl} width="700" height="500" alt="" className="image-preview"/>}
+        {transformedPhotoUrl && <Image src={transformedPhotoUrl} width="600" height="300" alt="" className="image-preview"/>}
       </div>
     );
   } else {

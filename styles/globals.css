@@ -33,21 +33,22 @@ a {
 }
 
 .modal {
-  width: 50%;
-  height: 50%;
+  width: 40%;
+  height: 65%;
   border: 2px solid #000;
   background-color: white;
   padding: 16px 32px 24px;
-}
-
-.image-container, .upload-file-button {
-  display: flex;
-  justify-content: center;
+  position: absolute;
 }
 
 .post-container > section {
   padding: 12.5px;
   margin: 0 auto;
+}
+
+.image-container, .upload-file-button {
+  display: flex;
+  justify-content: center;
 }
 
 .card-container {
