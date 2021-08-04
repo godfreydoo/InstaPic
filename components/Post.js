@@ -71,9 +71,7 @@ const Post = function ({ setShowModal }) {
           <section suppressHydrationWarning={true}>
             {process.browser && <UploadPhoto setPostDetails={setPostDetails}/>}
           </section>
-          <section>
-            {errorMsg && <p data-testid="errorMsg" className="error">{errorMsg}</p>}
-          </section>
+          {errorMsg && <section><p data-testid="errorMsg" className="error">{errorMsg}</p></section>}
           <section>
             <TextField
               inputProps={{ 'data-testid': 'description' }}
